@@ -10,9 +10,20 @@ import java.util.ArrayList;
 public class VenteSW {
 	private ArrayList<Client> listeProduits = new ArrayList<Client>();
 	private Catalogue catalogue;
+	
+//	public static void main(String[] args) throws ClassNotFoundException, SQLException {
+//		
+//		Connection conn = ConnexionJDBC.connexion();
+//		String req = "SELECT * FROM produit p where p.numProd="+ 2;
+//		Statement stmt = conn.createStatement();
+//		// execu/on de la requete
+//		ResultSet res = stmt.executeQuery(req);
+//		res.next();
+//		System.out.println(res.getString("designation"));
+//	}
 
 	// f1
-	public double consulterProd(int numeroProd, String monnaie) {
+	public double consulterProd(int numeroProd, String monnaie) throws ClassNotFoundException {
 		double prixConverti;
 
 		Produit prod = catalogue.consulterProd(numeroProd);

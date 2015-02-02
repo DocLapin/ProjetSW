@@ -7,7 +7,6 @@ public class Commande {
 private int numcde;
 private Client client;
 private Date dateLiv;
-private String etatCmd;
 
 public Commande(int numcde, Client client) {
 	super();
