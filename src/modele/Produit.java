@@ -1,5 +1,14 @@
 package modele;
 public class Produit {
+	
+	public Produit(int numProd, String designation, double prix) {
+		super();
+		this.numProd = numProd;
+		this.designation = designation;
+		this.prix = prix;
+	}
+
+
 	private int numProd;
 	private String designation;
 	private double prix;

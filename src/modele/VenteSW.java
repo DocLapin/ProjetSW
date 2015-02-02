@@ -1,6 +1,7 @@
 package modele;
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -33,21 +34,33 @@ public class VenteSW {
 	}
 
 	// f3
-	public DetailCde consulterCommande(int numCmd) {
-		DetailCde detail = new DetailCde();
-		
-		Connection conn = ConnexionJDBC.connexion(); 
+	public DetailCde consulterCommande(int numCmd) throws SQLException, ClassNotFoundException {
 
-		// rÃ©cupÃ©rer commande avec numero
-		
-		
-		String req = "SELECT  FROM commande WHERE numCde = " + numCmd;
+		DetailCde detail = new DetailCde();
+		Connection conn = ConnexionJDBC.connexion();
+
+		Commande cmd;
+		ArrayList<Produit> produits = null;
+
+		String req = "SELECT * FROM produit p, detailCde d, commande c, client l "
+				+ "WHERE d.numCde = c.numCde "
+				+ "AND p.numProd = d.numProd AND c.numCde = " + numCmd;
 		Statement stmt = conn.createStatement();
-		//execu/on de la requete
+		// execu/on de la requete
 		ResultSet res = stmt.executeQuery(req);
-		
-		Commande cde = res.;
-		detail.setCde(cde);
+
+		// créer objet Commande
+		cmd = new Commande(numCmd, new Client(res.getString("nom"),
+				res.getString("email")));
+
+		// Creer objets produits
+		while (res.next()) {
+			produits.add(new Produit(res.getInt("numProd"), res
+					.getString("designation"), res.getDouble("prix")));
+		}
+
+		detail.setCde(cmd);
+		detail.setPdt(produits);
 
 		return detail;
 	}
@@ -61,11 +74,12 @@ public class VenteSW {
 			// chercher la commande dans la base de données et la mettre dans
 			// variable
 
-			String req = "UPDATE commande SET dateLiv = SYSDATE WHERE numCde = " + numCmd;
+			String req = "UPDATE commande SET dateLiv = SYSDATE WHERE numCde = "
+					+ numCmd;
 			Statement stmt = conn.createStatement();
 			// execu/on de la requete
 			stmt.executeQuery(req);
-			
+
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
