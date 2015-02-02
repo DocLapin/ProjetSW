@@ -1,9 +1,9 @@
 package modele;
-import java.awt.List;
+
 import java.util.ArrayList;
 
 public class Client {
-	
+
 	public Client(String nom, String email) {
 		super();
 		this.nom = nom;
@@ -13,15 +13,12 @@ public class Client {
 	private String nom;
 	private String email;
 	private ArrayList<Commande> listeCmd = new ArrayList<Commande>();
-	
-	public boolean nouvelleCmdClient(Commande cmd) {
-		//ajouter la commande dans la liste
-		
-		return false;
 
+	public boolean nouvelleCmdClient(Commande cmd) {
+		// ajouter la commande dans la liste
+		return listeCmd.add(cmd);
 	}
-	
-	
+
 	public String getNom() {
 		return nom;
 	}
