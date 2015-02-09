@@ -15,6 +15,9 @@ import NET.webserviceX.www.CurrencyConvertorLocator;
 import NET.webserviceX.www.CurrencyConvertorSoap;
 
 public class VenteSW {
+	public static void main(String[] args) {
+		
+	}
 	private ArrayList<Client> listeClients = new ArrayList<Client>();
 	private Catalogue catalogue;
 
