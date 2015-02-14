@@ -9,12 +9,18 @@ import modele.*;
 
 public class CVenteSW extends HttpServlet {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	private VenteSW modeleVenteSW = new VenteSW();
 
 	public void service(HttpServletRequest req, HttpServletResponse response)
 			throws ServletException, IOException {
 
 		// identifier la demande
+
 		String demande = req.getParameter("op");
 
 		// consulter produit
@@ -23,11 +29,11 @@ public class CVenteSW extends HttpServlet {
 			// récupérer les paramètres de la demande
 			int numProd = Integer.parseInt(req.getParameter("numProd"));
 			String monnaie = req.getParameter("monnaie");
-
+		
 			double res;
 			// Transmettre la demande au modèle
 			try {
-				res = modeleVenteSW.consulterProd(numProd, monnaie);
+				res = (Double) modeleVenteSW.consulterProd(numProd, monnaie.toUpperCase());
 			} catch (Exception e) {
 				res = 0;
 			}
@@ -35,12 +41,12 @@ public class CVenteSW extends HttpServlet {
 			// Transmettre le résultat à la page JSP consulterProd
 			req.setAttribute("prixConverti", res);
 			RequestDispatcher d = req
-					.getRequestDispatcher("/Vue/ConsulterProd.jsp");
+					.getRequestDispatcher("/vue/ConsulterProd.jsp");
 			d.forward(req, response);
 		}
 
 		// nouvelle commande
-		if (demande == "f2") {
+		else if (demande.equals("f2")) {
 
 			// récupérer les paramètres de la demande
 			String nomClient = req.getParameter("nomClient");
@@ -56,12 +62,12 @@ public class CVenteSW extends HttpServlet {
 			// Transmettre le résultat à la page JSP nouvelleCommande
 			req.setAttribute("nouvCommande", res);
 			RequestDispatcher d = req
-					.getRequestDispatcher("/Vue/NouvelleCommande.jsp");
+					.getRequestDispatcher("/vue/NouvelleCommande.jsp");
 			d.forward(req, response);
 		}
 
 		// consulterCommande
-		if (demande == "f3") {
+		else if (demande.equals("f3")) {
 
 			// récupérer les paramètres de la demande
 			int numCmd = Integer.parseInt(req.getParameter("numCmd"));
@@ -77,12 +83,12 @@ public class CVenteSW extends HttpServlet {
 			// Transmettre le résultat à la page JSP ConsulterCommande
 			req.setAttribute("commandeChoisie", res);
 			RequestDispatcher d = req
-					.getRequestDispatcher("/Vue/ConsulterCommande.jsp");
+					.getRequestDispatcher("/vue/ConsulterCommande.jsp");
 			d.forward(req, response);
 		}
 
 		// enregistrer livraison commande
-		if (demande == "f5") {
+		else if (demande.equals("f5")) {
 
 			// récupérer les paramètres de la demande
 			int numCmd = Integer.parseInt(req.getParameter("numCmd"));
@@ -98,12 +104,12 @@ public class CVenteSW extends HttpServlet {
 			// Transmettre le résultat à la page JSP livCommande
 			req.setAttribute("resultatLiv", res);
 			RequestDispatcher d = req
-					.getRequestDispatcher("/Vue/livCommande.jsp");
+					.getRequestDispatcher("/vue/livCommande.jsp");
 			d.forward(req, response);
 		}
-		
+
 		// vérifier etat livraison
-		if (demande == "f6") {
+		else if (demande.equals("f6")) {
 
 			// récupérer les paramètres de la demande
 			int numCmd = Integer.parseInt(req.getParameter("numCmd"));
@@ -118,8 +124,7 @@ public class CVenteSW extends HttpServlet {
 
 			// Transmettre le résultat à la page JSP etatLiv
 			req.setAttribute("commandeChoisie", res);
-			RequestDispatcher d = req
-					.getRequestDispatcher("/Vue/etatLiv.jsp");
+			RequestDispatcher d = req.getRequestDispatcher("/vue/etatLiv.jsp");
 			d.forward(req, response);
 		}
 

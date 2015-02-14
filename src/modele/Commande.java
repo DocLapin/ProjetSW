@@ -13,6 +13,7 @@ public Commande(int numcde, Client client) {
 	this.numcde = numcde;
 	this.client = client;
 	
+	@SuppressWarnings("unused")
 	boolean result = this.client.nouvelleCmdClient(this);
 }
 

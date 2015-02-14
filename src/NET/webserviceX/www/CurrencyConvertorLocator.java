@@ -9,7 +9,12 @@ package NET.webserviceX.www;
 
 public class CurrencyConvertorLocator extends org.apache.axis.client.Service implements NET.webserviceX.www.CurrencyConvertor {
 
-    public CurrencyConvertorLocator() {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	public CurrencyConvertorLocator() {
     }
 
 

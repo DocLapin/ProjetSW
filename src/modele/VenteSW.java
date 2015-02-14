@@ -2,7 +2,6 @@ package modele;
 
 import java.rmi.RemoteException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -15,23 +14,25 @@ import NET.webserviceX.www.CurrencyConvertorLocator;
 import NET.webserviceX.www.CurrencyConvertorSoap;
 
 public class VenteSW {
-	public static void main(String[] args) {
-		
-	}
+
 	private ArrayList<Client> listeClients = new ArrayList<Client>();
 	private Catalogue catalogue;
-
-	// public static void main(String[] args) throws ClassNotFoundException,
-	// SQLException {
-	//
-	// Connection conn = ConnexionJDBC.connexion();
-	// String req = "SELECT * FROM produit p where p.numProd="+ 2;
-	// Statement stmt = conn.createStatement();
-	// // execu/on de la requete
-	// ResultSet res = stmt.executeQuery(req);
-	// res.next();
-	// System.out.println(res.getString("designation"));
-	// }
+	
+//
+//	public static void main(String[] args) throws SQLException, ClassNotFoundException {
+//		Connection conn = ConnexionJDBC.connexion();
+//
+//		// chercher la commande dans la base de données et la mettre dans
+//		// variable
+//		
+//		int numCmd = 1;
+//
+//		String req = "UPDATE commande SET dateLiv = SYSDATE WHERE numCde = "
+//				+ numCmd;
+//		Statement stmt = conn.createStatement();
+//		// execu/on de la requete
+//		stmt.executeQuery(req);
+//	}
 
 	// f1
 	public double consulterProd(int numeroProd, String monnaie)
@@ -40,27 +41,38 @@ public class VenteSW {
 
 		double prixConverti;
 		String monnaieBase = "EUR";
+		
+		catalogue = new Catalogue();
 
-		Produit prod = catalogue.consulterProd(numeroProd);
+		if (catalogue.initialiserCatalogue()) {
+			Produit prod = catalogue.consulterProd(numeroProd);
 
-		CurrencyConvertorLocator service = new CurrencyConvertorLocator();
+			CurrencyConvertorLocator service = new CurrencyConvertorLocator();
 
-		CurrencyConvertorSoap operation = service.getCurrencyConvertorSoap();
+			CurrencyConvertorSoap operation = service
+					.getCurrencyConvertorSoap();
 
-		prixConverti = operation.conversionRate(
-				Currency.fromString(monnaieBase), Currency.fromString(monnaie))
-				* prod.getPrix(); // appel au service web
+			prixConverti = operation.conversionRate(
+					Currency.fromString(monnaieBase.toUpperCase()),
+					Currency.fromString(monnaie.toUpperCase()))
+					* prod.getPrix(); // appel au service web
+
+		} else {
+			System.err.println("Problème de connection à la base");
+			prixConverti = 105;
+		}
 
 		return prixConverti;
 	}
 
 	// f2
-	public Commande nouvelleCommande(String nomClient) throws ClassNotFoundException, SQLException {
+	public Commande nouvelleCommande(String nomClient)
+			throws ClassNotFoundException, SQLException {
 
 		Connection conn = ConnexionJDBC.connexion();
 
 		Client cli = null;
-		
+
 		try {
 
 			String req2 = "SELECT * FROM client WHERE nomClient = " + nomClient;
@@ -128,9 +140,11 @@ public class VenteSW {
 
 			// chercher la commande dans la base de données et la mettre dans
 			// variable
+			
+			int numeroCommande = (int) numCmd;
 
 			String req = "UPDATE commande SET dateLiv = SYSDATE WHERE numCde = "
-					+ numCmd;
+					+ numeroCommande;
 			Statement stmt = conn.createStatement();
 			// execu/on de la requete
 			stmt.executeQuery(req);
@@ -144,35 +158,36 @@ public class VenteSW {
 		return true;
 
 	}
-	
-	//f6
-	public Commande etatLivCommande(int numCde) throws ClassNotFoundException, SQLException {
-		
-		Connection conn = ConnexionJDBC.connexion();
-		
-		Commande cmd=null;
 
-		String req = "SELECT * FROM  commande c "
-				+ "WHERE c.numCde = " + numCde;
+	// f6
+	public Commande etatLivCommande(int numCde) throws ClassNotFoundException,
+			SQLException {
+
+		Connection conn = ConnexionJDBC.connexion();
+
+		Commande cmd = null;
+
+		String req = "SELECT * FROM  commande c " + "WHERE c.numCde = "
+				+ numCde;
 		Statement stmt = conn.createStatement();
 		// execu/on de la requete
 		ResultSet res = stmt.executeQuery(req);
-		
-		String req2 = "SELECT * FROM client WHERE nomClient = " + res.getString("nomClient");
+
+		String req2 = "SELECT * FROM client WHERE nomClient = "
+				+ res.getString("nomClient");
 		Statement stmt2 = conn.createStatement();
 		// execution de la requete
 		ResultSet res2 = stmt2.executeQuery(req2);
 
 		res2.next();
 
-		Client cli = new Client(res2.getString("nomClient"), res2.getString("email"));
-		cmd=new Commande(res.getInt("numCde"),cli);
+		Client cli = new Client(res2.getString("nomClient"),
+				res2.getString("email"));
+		cmd = new Commande(res.getInt("numCde"), cli);
 		cmd.setDateLiv(res.getDate("dateLiv"));
-		
+
 		return cmd;
-		
-		
-		
+
 	}
 
 }

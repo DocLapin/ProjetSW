@@ -2,27 +2,26 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
-	<classpathentry kind="lib" path="Z:/Services web/Projet janv-2015/ojdbc6.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/activation.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/axis.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/axis-ant.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/bsf.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/castor-0.9.5.2.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/commons-codec-1.2.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/commons-discovery-0.2.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/commons-httpclient-3.0-rc2.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/commons-logging-1.0.4.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/commons-net-1.0.0-dev.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/httpunit.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/ibmjsse.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/javax.jms.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/jaxrpc.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/JimiProClasses.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/junit-3.8.1.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/log4j-1.2.8.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/mailapi_1_3_1.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/saaj.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/servlet.jar"/>
-	<classpathentry kind="lib" path="Z:/tpws/axis-1_4/lib/wsdl4j-1.5.1.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/activation.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/axis-ant.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/axis.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/bsf.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/castor-0.9.5.2.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/commons-codec-1.2.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/commons-discovery-0.2.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/commons-httpclient-3.0-rc2.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/commons-logging-1.0.4.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/commons-net-1.0.0-dev.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/httpunit.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/ibmjsse.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/javax.jms.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/jaxrpc.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/JimiProClasses.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/junit-3.8.1.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/log4j-1.2.8.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/mailapi_1_3_1.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/saaj.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/servlet.jar"/>
+	<classpathentry kind="lib" path="/Users/simon/git/lib/wsdl4j-1.5.1.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
